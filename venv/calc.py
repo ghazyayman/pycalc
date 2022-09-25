@@ -1,5 +1,5 @@
 import tkinter as tk
-
+#styles kalkulator
 LARGE_FONT_STYLE = ("Arial", 40, "bold")
 SMALL_FONT_STYLE = ("Arial", 16)
 DIGITS_FONT_STYLE = ("Arial", 24, "bold")
@@ -24,13 +24,14 @@ class Calculator:
         self.display_frame = self.create_display_frame()
 
         self.total_label, self.label = self.create_display_labels()
-
+        #digit dari kalkulator
         self.digits = {
             7: (1, 1), 8: (1, 2), 9: (1, 3),
             4: (2, 1), 5: (2, 2), 6: (2, 3),
             1: (3, 1), 2: (3, 2), 3: (3, 3),
             0: (4, 2), '.': (4, 1)
         }
+        #operasi aritmatika kalkulator
         self.operations = {"/": "\u00F7", "*": "\u00D7", "-": "-", "+": "+"}
         self.buttons_frame = self.create_buttons_frame()
 
@@ -51,12 +52,14 @@ class Calculator:
         for key in self.operations:
             self.window.bind(key, lambda event, operator=key: self.append_operator(operator))
 
+    #buttons kalkulator
     def create_special_buttons(self):
         self.create_clear_button()
         self.create_equals_button()
         self.create_square_button()
         self.create_sqrt_button()
 
+    #label kalkulator
     def create_display_labels(self):
         total_label = tk.Label(self.display_frame, text=self.total_expression, anchor=tk.E, bg=LIGHT_GRAY,
                                fg=LABEL_COLOR, padx=24, font=SMALL_FONT_STYLE)
@@ -68,6 +71,7 @@ class Calculator:
 
         return total_label, label
 
+    #display frame
     def create_display_frame(self):
         frame = tk.Frame(self.window, height=221, bg=LIGHT_GRAY)
         frame.pack(expand=True, fill="both")
@@ -83,6 +87,7 @@ class Calculator:
                                borderwidth=0, command=lambda x=digit: self.add_to_expression(x))
             button.grid(row=grid_value[0], column=grid_value[1], sticky=tk.NSEW)
 
+    #operasi perhitungan
     def append_operator(self, operator):
         self.current_expression += operator
         self.total_expression += self.current_expression
@@ -90,6 +95,7 @@ class Calculator:
         self.update_total_label()
         self.update_label()
 
+    #button operator
     def create_operator_buttons(self):
         i = 0
         for operator, symbol in self.operations.items():

@@ -115,6 +115,7 @@ class Calculator:
                            borderwidth=0, command=self.clear)
         button.grid(row=0, column=1, sticky=tk.NSEW)
 
+    #tabel kotak pada kalkulator
     def square(self):
         self.current_expression = str(eval(f"{self.current_expression}**2"))
         self.update_label()
